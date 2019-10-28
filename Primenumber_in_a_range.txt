@@ -19,3 +19,4 @@ class PrimeNumber
 end
 p1=PrimeNumber.new
 p1.primenumber
+#Test
