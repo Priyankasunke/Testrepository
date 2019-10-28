@@ -1,0 +1,21 @@
+class PrimeNumber
+    def primenumber
+        (1..20).each do |num1|
+        count=0
+        (1..num1).each do |num|
+            if num1%num==0
+                count+=1
+            end
+       end
+   
+       if (count==2)
+       
+       puts " #{num1} prime number"
+       end
+       
+   end  
+        
+ end
+end
+p1=PrimeNumber.new
+p1.primenumber
