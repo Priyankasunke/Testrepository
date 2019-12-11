@@ -1,0 +1,13 @@
+class Parent
+    def method
+        puts "hi"
+    end
+end
+class Child<Parent
+    def method
+        super
+        puts "hello"
+    end
+end
+c=Child.new
+c.method
