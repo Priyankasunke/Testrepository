@@ -1,0 +1,56 @@
+Feature: Verify registration page
+
+  Scenario: Submit registration form by providing all the details
+    Given i am on the registration page
+    When  i enter the following fields
+    |First Name|tom|
+    |Last Name |jerry|
+    |phone     |2212345678|
+    |Email     |jerry123@gmail.com|
+    |Address   |polaries          |
+    |city      |columbus          |
+    |state     |Ohio              |
+    |Postal Code|43022            |
+     |User Name  |jerry123@gmail.com|
+    |Password   |Jerry@123         |
+    |Confirm Password|Jerry@123    |
+    And i select 'France' as my country
+    And i click on submit button
+    Then i should register
+	
+	require 'watir'
+require 'cucumber'
+
+Given(/^i am on the registration page$/) do
+  @register=Watir::Browser.new :firefox
+  @register.goto 'http://newtours.demoaut.com/mercurywelcome.php'
+  @register.link(visible_text: 'REGISTER').click
+  puts @register.title
+end
+
+When(/^i enter the following fields$/) do |table|
+  @register.text_field(name: 'firstName').set table.raw[0][1]
+  @register.text_field(name: 'lastName').set table.raw[1][1]
+  @register.text_field(name: 'phone').set table.raw[2][1]
+  @register.text_field(name: 'userName').set table.raw[3][1]
+  @register.text_field(name: 'address1').set table.raw[4][1]
+  @register.text_field(name: 'city').set table.raw[5][1]
+  @register.text_field(name: 'state').set table.raw[6][1]
+  @register.text_field(name: 'postalCode').set table.raw[7][1]
+  @register.text_field(name: 'email').set table.raw[8][1]
+  @register.text_field(name: 'password').set table.raw[9][1]
+  @register.text_field(name: 'confirmPassword').set table.raw[10][1]
+
+end
+
+And(/^i select 'France' as my country$/) do
+  @register.select_list(name: 'country').select 'FRANCE'
+end
+
+And(/^i click on submit button$/) do
+  @register.button(name: 'register').click
+end
+
+Then(/^i should register$/) do
+  puts @register.title
+end
